@@ -1,5 +1,5 @@
 # unity-platformer2D
-a Unity 2D project - a platformer where you jump and fight enemies to get to the end before the water rises and drows you!
+a Unity 2D project - a platformer where you jump, climb ladders, avoid obstacles and fight enemies to get to the end before the water rises and drows you!
 
 Play the first level here: https://lamngo.itch.io/jumpyjump
 
