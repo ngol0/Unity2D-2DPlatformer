@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class ScenePersist : MonoBehaviour
 {
-    //Singleton
+    private static ScenePersist _instance;
+
+    public static ScenePersist Instance { get { return _instance; } }
+
+
     private void Awake()
     {
-        int numOfScenePersist = FindObjectsOfType<ScenePersist>().Length;
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
 
-        if (numOfScenePersist > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        _instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void ResetScenePersist()

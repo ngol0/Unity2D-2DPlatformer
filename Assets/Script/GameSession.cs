@@ -8,25 +8,26 @@ public class GameSession : MonoBehaviour
 {
     int currentSceneIndex;
     [SerializeField] int playerLives = 3;
-    [SerializeField] int score {get;set;} = 0;
+    [SerializeField] int score = 0;
 
     //ref
     [SerializeField] TextMeshProUGUI myLives;
     [SerializeField] TextMeshProUGUI myScore;
 
-    //Singleton
+    private static GameSession _instance;
+
+    public static GameSession Instance { get { return _instance; } }
+
     private void Awake()
     {
-        int numGameSession = FindObjectsOfType<GameSession>().Length;
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
 
-        if (numGameSession > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
+        _instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void Start()
@@ -64,9 +65,13 @@ public class GameSession : MonoBehaviour
 
     void ResetGameSession()
     {
-        FindObjectOfType<ScenePersist>().ResetScenePersist();
+        ResetGameData();
         SceneManager.LoadScene(currentSceneIndex);
-        Destroy(gameObject);
     }
 
+    public void ResetGameData()
+    {
+        ScenePersist.Instance.ResetScenePersist();
+        Destroy(gameObject);
+    }
 }

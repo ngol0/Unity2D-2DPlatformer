@@ -11,7 +11,7 @@ public class LoadInLevel : MonoBehaviour
     {
         if (other.tag=="Player")
         {
-            FindObjectOfType<ScenePersist>().ResetScenePersist();
+            GameSession.Instance.ResetGameData();
             SceneManager.LoadScene("GameOver");
         }
     }
