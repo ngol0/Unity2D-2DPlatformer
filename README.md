@@ -1,4 +1,4 @@
-# unity-platformer2D
+# Unity2D Jumpy Jump
 A Unity2D platformer project in which player jump, climb ladders, avoid obstacles and fight enemies to get to the end before getting killed by the rising water!
 
 Play the first level here: https://lamngo.itch.io/jumpyjump
